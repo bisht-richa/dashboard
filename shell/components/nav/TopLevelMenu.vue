@@ -65,9 +65,10 @@ export default {
     clusters() {
       const all = this.$store.getters['management/all'](MANAGEMENT.CLUSTER);
       let kubeClusters = filterHiddenLocalCluster(filterOnlyKubernetesClusters(all), this.$store);
+      let pClusters = null;
 
       if (this.hasProvCluster) {
-        const pClusters = this.$store.getters['management/all'](CAPI.RANCHER_CLUSTER);
+        pClusters = this.$store.getters['management/all'](CAPI.RANCHER_CLUSTER);
         const available = pClusters.reduce((p, c) => {
           p[c.mgmt] = true;
 
@@ -81,10 +82,12 @@ export default {
       }
 
       return kubeClusters.map((x) => {
+        const pCluster = pClusters?.find(c => c.mgmt.id === x.id);
+
         return {
           id:              x.id,
           label:           x.nameDisplay,
-          ready:           x.isReady,
+          ready:           x.isReady && !pCluster?.hasError,
           osLogo:          x.providerOsLogo,
           providerNavLogo: x.providerMenuLogo,
           badge:           x.badge,
@@ -120,22 +123,7 @@ export default {
     configurationApps() {
       const options = this.options;
 
-      const items = options.filter(opt => opt.category === 'configuration');
-
-      // Add plugin page
-      // Ony when developing for now
-      if (process.env.dev) {
-        items.push({
-          label:   'Plugins',
-          inStore: 'management',
-          icon:    'icon-gear',
-          value:   'plugins',
-          weight:  1,
-          to:      { name: 'plugins' },
-        });
-      }
-
-      return items;
+      return options.filter(opt => opt.category === 'configuration');
     },
 
     options() {
@@ -181,7 +169,7 @@ export default {
   watch: {
     $route() {
       this.shown = false;
-    },
+    }
   },
 
   mounted() {
