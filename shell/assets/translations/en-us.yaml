@@ -141,7 +141,7 @@ nav:
     serviceDiscovery: Service Discovery
     starred: Starred
     storage: Storage
-    workload: Workload
+    workload: Workloads
     monitoring: Monitoring
     advanced: Advanced
     RKE1Configuration: RKE1 Configuration
@@ -2571,6 +2571,15 @@ logging:
     clientKeyPass: Client Key Pass from Secret
     verifySsl: Verify SSL
     sslVersion: SSL Version
+  redis:
+    host: Host
+    port: Port
+    dbNumber: Redis database number
+    ttl: TTL for each key
+    password: Password from Secret
+    format:
+      title: Format
+      type: Type
   gelf:
     host: Host
     port: Port
@@ -2701,6 +2710,8 @@ logging:
       configuration: Configuration
   outputProviders:
     elasticsearch: Elasticsearch
+    opensearch: OpenSearch
+    redis: Redis
     splunkHec: Splunk
     kafka: Kafka
     forward: Fluentd
