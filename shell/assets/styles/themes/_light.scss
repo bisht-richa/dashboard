@@ -23,7 +23,7 @@ $lightest  : #FFFFFF;
 //color for items that are not enabled
 $disabled  : $medium;
 
-$primary         : #3D98D3;
+$primary         : #4062B9;
 $secondary       : $darker;
 $link            : #3D98D3;
 
@@ -360,7 +360,7 @@ BODY, .theme-light {
   --checkbox-border            : #{$medium};
   --checkbox-tick-disabled     : #{darken($disabled, 40%)};
   --checkbox-disabled-bg       : #{$disabled};
-  --checkbox-ticked-bg         : var(--link);
+  --checkbox-ticked-bg         : var(--primary);
 
   --drag-over-inner-bg         : #{rgba($drag-over, 0.9)};
   --drag-over-outer-bg         : #{rgba($drag-over, 0)};
@@ -372,7 +372,7 @@ BODY, .theme-light {
   --dropdown-active-text       : #{$lightest};
   --dropdown-active-bg         : #{$dark};
   --dropdown-hover-text        : #{$lightest};
-  --dropdown-hover-bg          : var(--link);
+  --dropdown-hover-bg          : var(--primary);
   --dropdown-disabled-text     : var(--muted);
   --dropdown-disabled-bg       : #{$disabled};
   --dropdown-highlight-text    : var(--link);

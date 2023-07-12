@@ -131,7 +131,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--checkbox-ticked-bg);
+  box-shadow: 0 0 1px blue;
 }
 
 input:checked + .slider:before {
