@@ -8,10 +8,17 @@ describe('fx: sort', () => {
       expect(result).toStrictEqual(expected);
     };
 
-    it.each([
+    it.only.each([
       [[{ a: 1 }, { a: 9 }], ['a'], [{ a: 1 }, { a: 9 }]],
       [[{ a: 2 }, { a: 1 }], ['a'], [{ a: 1 }, { a: 2 }]],
     ])('should sort by single property', (ary, key, expected) => {
+      testSortBy(ary, key, expected);
+    });
+
+    it.only.each([
+      [[{ a: '989' }, { a: '895' }, { a: '9' }], ['a'], [{ a: '9' }, { a: '895' }, { a: '989' }]],
+      [[{ a: '2.55.17.196' }, { a: '88.2.17.2' }], ['a'], [{ a: '2.55.17.196' }, { a: '88.2.17.2' }]],
+    ])('should sort by number', (ary, key, expected) => {
       testSortBy(ary, key, expected);
     });
 
